@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>readMore</title>
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.2/semantic.css">
+<!-- <link rel="stylesheet" type="text/css" href="backimg.css"> -->
+</head>
+
+<body style=" background: #F8D353;
+background: -webkit-linear-gradient(top left, #F8D353, #FF5C5A);
+background: -moz-linear-gradient(top left, #F8D353, #FF5C5A);
+background: linear-gradient(top left, #F8D353, #FF5C5A);">
+<!-- <div style="height: 200px;
+    width: 50%;  background-color: powderblue;background: #3A3420;
+background: -webkit-linear-gradient(top left, #3A3420, #6BA147);
+background: -moz-linear-gradient(top left, #3A3420, #6BA147);
+background: linear-gradient(top left, #3A3420, #6BA147); ">
+
+</div> -->
+<div class="ui fixed inverted menu">
+	<div class="ui container">
+		<div class="header item">My blog</div>
+		<a href="/" class="item">Home</a>
+		<%if(username!=""){%>
+			<a href="/newblog" class="item">Create</a>
+			<div class="header item"><%=username%></div>
+			<a href="/logout" class="item">Logout</a>
+			<a href="/showRequests" class="item">Requests</a>
+			<a href="/showFriends" class="item">Friends</a>
+				<div class="item" style="margin-left: 220px">
+			
+		<div class="ui icon input" >
+		<form style=" form:inline; " method="post" action="/search">
+			<input type="text" size=45 name="query" placeholder="Search any post / #keyword / F_ for users" required >
+
+			<button class="ui secondary button">Search</button>
+		</form>
+	</div>	</div>
+
+		<%}%>
+	</div>
+</div>
+<center><br><br><br>	
+		<div style="background: #7F6610;
+background: -webkit-linear-gradient(top left, #7F6610, #3B6F18);
+background: -moz-linear-gradient(top left, #7F6610, #3B6F18);
+background: linear-gradient(top left, #7F6610, #3B6F18);  float: left;
+    width: 50%;	">
+			<!-- RECIEVED -->
+			<div class="ui sizer vertical segment">
+  <div class="ui huge header">Request[s] Recieved</div>
+
+	<% for(var i=0;i<Rusers.length ;i++){ %>
+	<div >
+		
+		<form style=" display:inline; " method="get" action="/showUser/<%= Rusers[i].User %>">
+		<button class="ui secondary button"><%= Rusers[i].UserName %> ( <%= Rusers[i].Email %> ) </button>
+		</form>			
+		<form style=" display:inline; " method="get" action="/Accept/<%= Rusers[i].User %>/<%= Rusers[i].UserName %>/
+			<%= Rusers[i].Email %>">
+		<button class="ui inverted green button">Accept</button>
+		</form>
+		<form style=" display:inline; " method="get" action="/Reject/<%= Rusers[i].User %>">
+		<button class="ui inverted red button">Reject</button>
+		</form>
+	</div>
+		<br>
+		<%}%>
+  </div>
+</div>
+		</div>
+		<div style="background: #2E2D29;
+background: -webkit-linear-gradient(top left, #2E2D29, #5F403F);
+background: -moz-linear-gradient(top left, #2E2D29, #5F403F);
+background: linear-gradient(top left, #2E2D29, #5F403F);
+ float: right;
+    width: 50%;">
+  
+    	<!-- SENT -->
+    <div class="ui sizer vertical segment">
+  <div class="ui huge header">Request[s] Sent</div>
+
+	<% for(var i=0;i<Susers.length ;i++){ %>
+	<div >
+		
+		<form style=" display:inline; " method="get" action="/showUser/<%= Susers[i].User %>">
+		<button class="ui secondary button"><%= Susers[i].UserName %> ( <%= Susers[i].Email %> ) </button>
+		</form>			
+		<form style=" display:inline; " method="get" action="/DeleteRequest/<%= Susers[i].User%>">
+		<button class="ui inverted red button">Delete</button>
+		</form>
+	</div>
+		<br>
+		<%}%>
+  </div>
+    </div>
+
+	</center>

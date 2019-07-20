@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>readMore</title>
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.2/semantic.css">
+<!-- <link rel="stylesheet" type="text/css" href="backimg.css"> -->
+</head>
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js">
+	$("document").ready(function(){
+		$("#comment").click(function(){
+			$("#cc").load("./views/readMore.ejs");
+		})
+	})
+</script>
+
+</script>
+<body style=" background: #F8D353;
+background: -webkit-linear-gradient(top left, #F8D353, #FF5C5A);
+background: -moz-linear-gradient(top left, #F8D353, #FF5C5A);
+background: linear-gradient(top left, #F8D353, #FF5C5A);">
+<!-- <div style="height: 200px;
+    width: 50%;  background-color: powderblue;background: #3A3420;
+background: -webkit-linear-gradient(top left, #3A3420, #6BA147);
+background: -moz-linear-gradient(top left, #3A3420, #6BA147);
+background: linear-gradient(top left, #3A3420, #6BA147); ">
+
+</div> -->
+<div class="ui fixed inverted menu">
+	<div class="ui container">
+		<div class="header item">My blog</div>
+		<a href="/" class="item">Home</a>
+		<%if(username!=""){%>
+			<a href="/newblog" class="item">Create</a>
+			<div class="header item"><%=username%></div>
+			<a href="/logout" class="item">Logout</a>
+			<a href="/showRequests" class="item">Requests</a>
+			<a href="/showFriends" class="item">Friends</a>
+				<div class="item" style="margin-left: 220px">
+
+		<div class="ui icon input" >
+		<form style=" form:inline; " method="post" action="/search">
+			<input type="text" size=45 name="query" placeholder="Search users" required >
+
+			<button class="ui secondary button">Search</button>
+		</form>
+	</div>	</div>
+
+	<!-- logged in  -->
+	<center>
+
+	</center>
+			<%}else{%>
+		<a href="/login" class="item">Log In</a>
+		<a href="/register" class="item">Register</a>
+
+		<div class="item" style="margin-left: 490px">
+		<div class="ui icon input" >
+		<form style=" form:inline; " method="post" action="/search">
+			<input type="text" size=45 name="query" placeholder="Search users" required >
+
+			<button class="ui secondary button">Search</button>
+		</form>
+	</div>	</div>
+	<!-- Notlogged in  -->
+	<center>
+
+	</center>
+		<%}%>
+	</div>
+</div>
+<center><br><br><br>
+		<div style="background: #7F6610;
+background: -webkit-linear-gradient(top left, #7F6610, #3B6F18);
+background: -moz-linear-gradient(top left, #7F6610, #3B6F18);
+background: linear-gradient(top left, #7F6610, #3B6F18); width: 800px">
+			<h1 class="item"><%=post.title%>(<%=post.Status%>)</h1>
+			<h3 style="display: inline;">#(</h3>
+			<%for(var i=0;i<keywords.length;i++){%>
+
+	  <%if(i==keywords.length-1){%>
+	  <h3 style="display: inline;" class="item"><%=keywords[i]%></h3>
+	  <%}else{%>
+	  <h3 style="display: inline;" class="item"><%=keywords[i]%>,</h3>
+	  <%}%>
+<%}%>
+<h3 style="display: inline;">)</h3>
+<br>
+
+
+<img src="<%=post.picture%>" style="width : 700;height: 300">
+<br>
+<h3 class="item"><%= post.Description%> </h3><br>
+<%if(!sameUser){%>
+	<div class="ui labeled button" tabindex="0">
+ 		<form method="get" action="/likePost/<%=postId%>">
+ 			<button class="ui inverted yellow button"><%=Like%> (<%=Likes%>) </button>
+ 		</form>
+
+			</div><br>
+
+<%}else{%>
+<form method="post" action="/addKeyword/<%= postId %>">
+<div class="ui input focus">
+
+		<input type="text" placeholder="Add Keyword" name="Keyword" required>
+		<button class="ui secondary button">ADD
+</button>
+</div>
+</form>
+<br><br>
+	<div class="ui labeled button" tabindex="0">
+ 		<form method="get" action="/likePost/<%=postId%>">
+ 			<button class="ui inverted yellow button"><%=Like%> (<%=Likes%>)</button>
+ 		</form>
+
+			</div>
+
+		<form style=" display:inline; " method="get" action="/delete/<%=postId%>">
+		<button class="ui inverted red button">Delete</button>
+		</form>
+		<form style=" display:inline; " method="get" action="/edit/<%=postId%>">
+		<button class="ui inverted black button">Edit</button>
+		</form>
+<h3>MAKE THIS AS : </h3>
+
+		<form style=" display:inline; " method="get" action="/public/<%=postId%>">
+		<button class="ui inverted yellow button">Public</button>
+		</form>
+		<form style=" display:inline; " method="get" action="/private/<%=postId%>">
+		<button class="ui inverted orange button">Private</button>
+		</form>
+		<form style=" display:inline; " method="get" action="/onlyMe/<%=postId%>">
+		<button class="ui inverted red button">OnlyMe</button>
+		</form>
+<br>
+<%}%>
+<p1>________________________________________________________________________________________</p1>
+<br>
+<div id = "cc">
+<%for(var i=0;i<commentSection.length;i++){%>
+
+
+<h2><div style="color: yellow"><%=commentSection[i].userName%></div>  <%=commentSection[i].Comment%></h2>
+<form style="display: inline;" method="get" action="/replyComment/<%=commentSection[i]._id%>/<%=postId%>/<%=commentSection[i].userName%>">
+	<!-- 	<button class="ui inverted red button" id="reply">REPLY</button> -->
+		<div style=" display:inline; " id="replyButton"></div>
+			</form>
+				<%if(ID==commentSection[i].userId){%>
+		<form style="display: inline;" method="get" action="/deleteComment/<%=commentSection[i]._id%>/<%=postId%>">
+		<button class="ui inverted red button">DELETE</button>
+			</form>
+			<div>
+
+			</div>
+			<!-- <p>__________________________________________</p> -->
+
+		<%}%>
+
+<%}%>
+</div>
+<br><br>
+		<form action="/addComment/<%=postId%>" method="post">
+		<textarea rows="3" cols="100"  class="field" required name="comment" placeholder="What you think about the post..."></textarea>
+		<br><br>
+		<button class="ui inverted primary button" id="comment">Comment</button>
+        </form>
+		<br><br></div></div>
+		</center>
+
+</body>
+
+</html>

@@ -1,0 +1,12 @@
+exports.AuthLogged={
+	loggedIn:false
+}
+exports.AuthId={
+	Id:""
+}
+exports.AuthUsername={
+	username:""
+}
+exports.AuthEmail={
+	Email:""
+}

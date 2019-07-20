@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>MY BLOG</title>
+</head>
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.2/semantic.css">
+<link rel="stylesheet" type="text/css" href="backimg.css">
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+<script  src="jQuery/events.js">
+	  
+	// function Edit(){
+	// 	$("#edit").click(function(){
+ //         $("#username").hide();
+ //        $("#edit").replaceWith("<form method='post' action='/' ><input type='input' value="+$("#username").html()+">"+
+ //        	"<button>Confirm</button>"
+ //        	+"</form>");
+
+     
+ //    });
+	
+</script>
+<body>
+
+<div class="ui fixed inverted menu">
+	<div class="ui container">
+		<div class="header item">My blog</div>
+		<a href="/" class="item">Home</a>
+		<%if(username!=""){%>
+			<a href="/newblog" class="item">Create</a>
+			<div class="header item"><%=username%></div>
+			<a href="/logout" class="item">Logout</a>
+			<a href="/showRequests" class="item">Requests</a>
+			<a href="/showFriends" class="item">Friends</a>
+				<div class="item" style="margin-left: 220px">
+		<div class="ui icon input" >
+		<form style=" form:inline; " method="post" action="/search">
+			<input type="text" size=45 name="query" placeholder="Search any post / #keyword / F_ for users" required >
+
+			<button class="ui secondary button">Search</button>
+		</form>
+	</div>	</div>
+
+			<%}else{%>
+		<a href="/login" class="item">Log In</a>
+		<a href="/register" class="item">Register</a>
+
+		<div class="item" style="margin-left: 490px">
+		<div class="ui icon input" >
+		<form style=" form:inline; " method="post" action="/search">
+			<input type="text" size=45 name="query" placeholder="Search any post / #keyword / F_ for users" required >
+
+			<button class="ui secondary button">Search</button>
+		</form>
+	</div>	</div>
+		<%}%>
+	</div>
+</div>
+
+
+<br><br><br><br>
+
+<center>
+<h3 id="username"><%= username %></h3>
+<div id="edit" >
+	<form >
+		<input type="button" value="Edit" ">
+	</form>
+</div>
+<button id="cancel">Cancel</button>
+
+</center>
+</body>
+</html>

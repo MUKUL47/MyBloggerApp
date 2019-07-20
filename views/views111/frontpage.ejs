@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>MY BLOG</title>
+</head>
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.2/semantic.css">
+<link rel="stylesheet" type="text/css" href="backimg.css">
+
+<body>
+
+<div class="ui fixed inverted menu">
+	<div class="ui container">
+		<div class="header item">My blog</div>
+		<a href="/" class="item">Home</a>
+		<%if(username!=""){%>
+			<a href="/newblog" class="item">Create</a>
+			<div class="header item"><%=username%></div>
+			<a href="/logout" class="item">Logout</a>
+			<a href="/showRequests" class="item">Requests</a>
+			<a href="/showFriends" class="item">Friends</a>
+			<a href="/profile" class="item">My profile</a>
+				<div class="item" style="margin-left: 220px">
+		<div class="ui icon input" >
+		<form style=" form:inline; " method="post" action="/search">
+			<input type="text" size=45 name="query" placeholder="Search users" required >
+
+			<button class="ui secondary button">Search</button>
+		</form>
+	</div>	</div>
+
+			<%}else{%>
+		<a href="/login" class="item">Log In</a>
+		<a href="/register" class="item">Register</a>
+
+		<div class="item" style="margin-left: 490px">
+		<div class="ui icon input" >
+		<form style=" form:inline; " method="post" action="/search">
+			<input type="text" size=45 name="query" placeholder="Search users" required >
+
+			<button class="ui secondary button">Search</button>
+		</form>
+	</div>	</div>
+		<%}%>
+	</div>
+</div>
+
+
+<br><br><br><br>
+
+<center>
+<%if(username!=""){%>
+<%if(reqAccept){%><h3>Someone has accepted your request !!!<a class="item" href="/showFriends">SHOW</a></h3><%}%>
+<%if(sendReq){%><h3>You have pending request[s] !!! <a class="item" href="/showRequests">SHOW</a></h3><%}%>
+
+<%for(var i=0;i<post.length;i++){%>
+<h1 class="item"><%=post[i].title%></h1>
+<img src="<%=post[i].picture%>" style="width : 400;height: 100">
+<h3 class="item"><%= (post[i].Description).slice(0,80)%>... </h3>
+
+
+<form  method="get" action="/post/<%=post[i]._id%>" style=" display:inline; ">
+		<button class="ui inverted black button">READ MORE</button>
+		</form>
+	<form style=" display:inline; " method="get" action="/removeKeywords/<%=post[i]._id%>">
+			<button class="ui inverted black button">REMOVE KEYWORD[S]</button>
+		</form>
+<br><br>
+<%}}%>
+</center>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>REGISTER</title>
+</head>
+<link rel="stylesheet" type="text/css" href="bootstrap.css">
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.2/semantic.css">
+<body style=" background: #12c2e9;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #f64f59, #c471ed, #12c2e9);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #f64f59, #c471ed, #12c2e9); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+">
+
+
+
+
+<div class="ui fixed inverted menu">
+  <div class="ui container">
+    <div class="header item">My blog</div>
+    <a href="/" class="item">Home</a>
+    <a href="/login" class="item">Login</a>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <center style="margin-left:500px;margin-right:500px;margin-top:40px;padding-bottom:40px;background-color:#f7f7f7;border-radius:6px;">
+<h1 style="margin-top:90px;">Register</h1>
+<form method="post" action="/register" style="margin-top:60px;">
+	
+ <div class="form-group">
+   <input type="text" class="form-control" id="exampleInputtext1"  placeholder="Enter name" name="name" style="width:250px;" required>
+    <br>
+    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" name="email" style="width:250px;" required>
+    <br>
+ 
+
+   
+    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Enter Password" name="pass" style="width:250px;" required>
+    <%if(email_exist!=""){%>
+      <h4>This email already exist<h4>
+      <%}%>
+   <br>
+  <button type="submit" class="btn btn-primary">REGISTER</button>
+   </div>
+</form></center>
+</body>
+</html>

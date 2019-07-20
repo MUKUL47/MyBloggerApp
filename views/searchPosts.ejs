@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>readMore</title>
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.2/semantic.css">
+<!-- <link rel="stylesheet" type="text/css" href="backimg.css"> -->
+</head>
+
+<body style=" background: #F8D353;
+background: -webkit-linear-gradient(top left, #F8D353, #FF5C5A);
+background: -moz-linear-gradient(top left, #F8D353, #FF5C5A);
+background: linear-gradient(top left, #F8D353, #FF5C5A);">
+<!-- <div style="height: 200px;
+    width: 50%;  background-color: powderblue;background: #3A3420;
+background: -webkit-linear-gradient(top left, #3A3420, #6BA147);
+background: -moz-linear-gradient(top left, #3A3420, #6BA147);
+background: linear-gradient(top left, #3A3420, #6BA147); ">
+
+</div> -->
+<div class="ui fixed inverted menu">
+	<div class="ui container">
+		<div class="header item">My blog</div>
+		<a href="/" class="item">Home</a>
+		<%if(username1!=""){%>
+			<a href="/newblog" class="item">Create</a>
+			<div class="header item"><%=username1%></div>
+				<a href="/showRequests" class="item">Requests</a>
+			<a href="/showFriends" class="item">Friends</a>
+			<a href="/logout" class="item">Logout</a>
+				<div class="item" style="margin-left: 250px">
+		<div class="ui icon input" >
+		<form style=" form:inline; " method="post" action="/search">
+			<input type="text" size=45 name="query" placeholder="Search users" required >
+
+			<button class="ui secondary button">Search</button>
+		</form>
+	</div>	</div>
+
+	<!-- logged in  -->
+	<center>
+		
+	</center>
+			<%}else{%>
+		<a href="/login" class="item">Log In</a>
+		<a href="/register" class="item">Register</a>
+
+		<div class="item" style="margin-left: 390px">
+		<div class="ui icon input" >
+		<form style=" form:inline; " method="post" action="/search">
+			<input type="text" size=45 name="query" placeholder="Search users" required >
+
+			<button class="ui secondary button">Search</button>
+		</form>
+	</div>	</div>
+	<!-- Notlogged in  -->
+	<center>
+		
+	</center>
+		<%}%>
+	</div>
+</div>
+<center><br><br><br>	
+		<div style="background: #7F6610;
+background: -webkit-linear-gradient(top left, #7F6610, #3B6F18);
+background: -moz-linear-gradient(top left, #7F6610, #3B6F18);
+background: linear-gradient(top left, #7F6610, #3B6F18); width: 800px">
+
+<%for(var i=0; users != undefined && i<users.length;i++){%>
+<h1><%=users[i]%></h1>
+<%}%>
+
+		</div>
+
+	</center>
+</body>
+</html>

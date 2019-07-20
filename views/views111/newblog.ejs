@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>NEW BLOG</title>
+</head>
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.2/semantic.css">
+<link rel="stylesheet" type="text/css" href="backimg.css">
+<body style=" background: #12c2e9;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #f64f59, #c471ed, #12c2e9);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #f64f59, #c471ed, #12c2e9); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+">
+	<div class="ui fixed inverted menu">
+	<div class="ui container">
+		<div class="header item">My blog</div>
+		<a href="/" class="item">Home</a>
+		<%if(username!=""){%>
+			<div class="header item"><%=username%></div>
+			<a href="/logout" class="item">Logout</a>
+			<a href="/showRequests" class="item">Requests</a>
+			<a href="/showFriends" class="item">Friends</a>
+				
+			<%}else{%>
+		<a href="/login" class="item">Log In</a>
+		<a href="/register" class="item">Register</a>
+		<%}%>
+	</div>
+</div>
+<br><br><br>
+<center>
+<div class="ui main text container segment">
+	<div class="ui huge header">
+		<form action="/newblog" method="post" class="ui form">
+			<div class="field">
+				<br>
+				<input type="text" name="title" placeholder="Title">
+			</div>
+			<div class="field">
+				<br>
+				<input type="text" name="image" placeholder="Image">
+			</div>
+			<div class="field">
+				<br>
+				<input type="text" name="content" placeholder="Write something about it...">
+			</div>
+			<button>Submit</button>
+			
+		</form>
+	</div>
+</div></center>
+</div>
+</body>
+</html>

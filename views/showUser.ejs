@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>MY BLOG</title>
+</head>
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.2/semantic.css">
+<link rel="stylesheet" type="text/css" href="backimg.css">
+<body style="background: #C67532;
+background: -webkit-linear-gradient(bottom right, #C67532, #7F205D);
+background: -moz-linear-gradient(bottom right, #C67532, #7F205D);
+background: linear-gradient(bottom right, #C67532, #7F205D);">
+
+<div class="ui fixed inverted menu">
+	<div class="ui container">
+		<div class="header item">My blog</div>
+		<a href="/" class="item">Home</a>
+		<%if(log){%>
+			<a href="/newblog" class="item">Create</a>
+			<div class="header item"><%=username%></div>
+			<a href="/logout" class="item">Logout</a>
+			<a href="/showRequests" class="item">Requests</a>
+			<a href="/showFriends" class="item">Friends</a>
+			<a href="/showMessages/<%=recipientUserId%>" class="item">Send Message</a>
+				<div class="item" style="margin-left: 220px">
+		<div class="ui icon input" >
+		<form style=" form:inline; " method="post" action="/search">
+			<input type="text" size=27 name="query" placeholder="Search any users" required >
+
+			<button class="ui secondary button">Search</button>
+		</form>
+	</div>	</div>
+
+			<%}else{%>
+		<a href="/login" class="item">Log In</a>
+		<a href="/register" class="item">Register</a>
+
+		<div class="item" style="margin-left: 490px">
+		<div class="ui icon input" >
+		<form style=" form:inline; " method="post" action="/search">
+			<input type="text" size=45 name="query" placeholder="Search any post / #keyword / F_ for users" required >
+
+			<button class="ui secondary button">Search</button>
+		</form>
+	</div>	</div>
+		<%}%>
+	</div>
+</div>
+
+
+<br><br><br><br>
+
+<center><br><br><br>	
+		<div style="background: #7F6610;
+background: -webkit-linear-gradient(top left, #7F6610, #3B6F18);
+background: -moz-linear-gradient(top left, #7F6610, #3B6F18);
+background: linear-gradient(top left, #7F6610, #3B6F18); width: 800px">
+
+
+<h2 class="item">(USER : <%=Susername%>)</h2>
+<%for(var i=0;i<post.length;i++){%>
+	
+			<h1 class="item"><%=post[i].title%>(<%=post[i].Status%>)</h1>
+<br>
+<img src="<%=post[i].picture%>" style="width : 700;height: 300">
+<br>
+<h3 class="item"><%= (post[i].Description).slice(0,80)%>... </h3>
+<form  method="get" action="/post/<%=post[i]._id%>">
+		<button class="ui inverted black button">READ MORE</button>
+		</form>
+<%}%>
+		</div>
+
+	</center>
+</body>
+</html>
